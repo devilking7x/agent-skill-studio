@@ -66,7 +66,7 @@ Conventional Commits format: `type(scope): summary`.
 
 ## 📸 Screenshots
 
-> Screenshots coming soon — the app ships with a dark studio theme and a light mode toggle.
+![Agent Skill Studio library with bundled skills](screenshots/demo.png)
 
 *Library view with search + tag filters · Skill detail with rendered preview · Editor with live validation*
 
