@@ -1,6 +1,7 @@
 # Agent Skill Studio
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/demo-live-8b5cf6.svg)](https://devilking7x.github.io/agent-skill-studio/)
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF.svg)](https://vite.dev)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg)](https://www.typescriptlang.org)
@@ -8,6 +9,8 @@
 
 > Every skill your agents use, in one studio.
 
+
+🔗 **Live demo:** https://devilking7x.github.io/agent-skill-studio/
 Agent Skill Studio is a **local-first web app** for creating, organizing, validating, and exporting **AI agent skills** in the `SKILL.md` format used by Claude Code and other agent harnesses. Everything runs in your browser — no account, no server, no telemetry. Your skills never leave your machine.
 
 ## ✨ Features
