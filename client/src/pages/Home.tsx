@@ -24,9 +24,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Kbd } from "@/components/ui/kbd";
 import { SkillCard } from "@/components/SkillCard";
+import { ShortcutsDialog } from "@/components/ShortcutsDialog";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useSkills } from "@/hooks/useSkills";
+import { useShortcut } from "@/hooks/useShortcuts";
 import { setImportDraft } from "@/lib/importDraft";
 import {
   nameFromFilename,
@@ -53,6 +56,11 @@ export default function Home() {
   const [deleteTarget, setDeleteTarget] = useState<Skill | null>(null);
   const [showReset, setShowReset] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // "/" focuses the search box — power-user shortcut, hinted in the input.
+  useShortcut("/", () => {
+    document.getElementById("skill-search")?.focus();
+  });
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -128,6 +136,7 @@ export default function Home() {
             </div>
           </Link>
           <div className="flex items-center gap-2">
+            <ShortcutsDialog />
             <Button
               variant="ghost"
               size="icon"
@@ -189,11 +198,17 @@ export default function Home() {
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
               <Input
+                id="skill-search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search skills by name, description, or tag…"
-                className="pl-9"
+                className="pl-9 pr-10"
               />
+              {!query && (
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
+                  <Kbd>/</Kbd>
+                </span>
+              )}
               {query && (
                 <button
                   onClick={() => setQuery("")}

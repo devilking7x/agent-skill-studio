@@ -13,8 +13,11 @@ Agent Skill Studio is a **local-first web app** for creating, organizing, valida
 ## ✨ Features
 
 - 📚 **Skills library** — browse your skills as cards, with instant search, tag filters, and per-skill enable/disable toggles
-- 🎁 **5 bundled sample skills** — `code-reviewer`, `commit-helper`, `doc-writer`, `test-generator`, `pr-summarizer`, each with real, genuinely useful instructions
+- 🎁 **9 bundled sample skills** — `code-reviewer`, `commit-helper`, `doc-writer`, `test-generator`, `pr-summarizer`, `security-reviewer`, `regex-helper`, `api-tester`, `changelog-writer`, each with real, genuinely useful instructions
 - ✍️ **Skill editor** — guided form with a markdown instructions editor, live preview, and **live frontmatter validation** against the Agent Skills spec
+- 🛡️ **Security lint** — the validator flags suspicious patterns in skill instructions: `curl … | sh` pipes, embedded API keys and secrets, external URLs, base64 blobs, and destructive commands
+- 📦 **Install bundles** — one-click download of a `.zip` that places the skill at the exact directory your harness expects (Claude Code, Codex, Cursor, Copilot, Gemini CLI)
+- ⌨️ **Keyboard shortcuts** — `/` focuses search, `Ctrl/⌘ S` saves (editor) or exports (detail view); hit the keyboard icon for the full list
 - 👁️ **Detail view** — rendered markdown preview, frontmatter summary, and validation status per skill
 - 📥 **Import / 📤 Export** — drop in any `.md` file to create a skill; export skills as `.md` downloads or copy them straight to the clipboard
 - 💾 **Local persistence** — custom skills live in `localStorage`, bundled samples stay pristine, and one click resets everything to defaults
@@ -66,10 +69,10 @@ Conventional Commits format: `type(scope): summary`.
 
 ## 🗺️ Roadmap
 
-- [ ] Export all enabled skills as a `.zip` for one-shot harness setup
+- [x] Export skills as install `.zip` bundles per harness (Claude Code, Codex, Cursor, Copilot, Gemini)
 - [ ] Skill templates gallery (starter templates per category)
 - [ ] Duplicate-skill detection and merge helper
-- [ ] Keyboard shortcuts for power users
+- [x] Keyboard shortcuts for power users
 - [ ] Share skills via URL (compressed in the hash)
 
 Have an idea? [Open an issue](../../issues) or send a PR.

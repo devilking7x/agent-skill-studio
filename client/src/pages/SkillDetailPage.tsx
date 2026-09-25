@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   Copy,
   Download,
+  FolderDown,
   Pencil,
   Trash2,
   TriangleAlert,
@@ -23,9 +24,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { InstallBundleDialog } from "@/components/InstallBundleDialog";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSkills } from "@/hooks/useSkills";
+import { useShortcut } from "@/hooks/useShortcuts";
 import {
   copyToClipboard,
   downloadTextFile,
@@ -39,8 +42,18 @@ export default function SkillDetailPage() {
   const [, navigate] = useLocation();
   const { getSkill, isEnabled, toggleEnabled, deleteSkill } = useSkills();
   const [showDelete, setShowDelete] = useState(false);
+  const [showBundle, setShowBundle] = useState(false);
 
   const skill = id ? getSkill(id) : undefined;
+
+  const handleExport = () => {
+    if (!skill) return;
+    downloadTextFile(`${skill.name}.md`, serializeSkill(skill));
+    toast.success(`Exported ${skill.name}.md`);
+  };
+
+  // Ctrl/⌘+S exports the current skill as .md.
+  useShortcut("s", handleExport, { ctrlOrCmd: true, ignoreWhenTyping: false });
 
   if (!skill) {
     return (
@@ -62,11 +75,6 @@ export default function SkillDetailPage() {
   const valid = !hasErrors(issues);
   const enabled = isEnabled(skill.id);
   const markdown = serializeSkill(skill);
-
-  const handleExport = () => {
-    downloadTextFile(`${skill.name}.md`, markdown);
-    toast.success(`Exported ${skill.name}.md`);
-  };
 
   const handleCopy = async () => {
     const ok = await copyToClipboard(markdown);
@@ -145,6 +153,9 @@ export default function SkillDetailPage() {
           </Button>
           <Button variant="outline" size="sm" onClick={handleExport}>
             <Download size={14} /> Export .md
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => setShowBundle(true)}>
+            <FolderDown size={14} /> Install bundle
           </Button>
           <Button variant="outline" size="sm" onClick={handleCopy}>
             <Copy size={14} /> Copy markdown
@@ -233,6 +244,8 @@ export default function SkillDetailPage() {
           {new Date(skill.updatedAt).toLocaleDateString()}
         </p>
       </div>
+
+      <InstallBundleDialog skill={skill} open={showBundle} onOpenChange={setShowBundle} />
 
       <AlertDialog open={showDelete} onOpenChange={setShowDelete}>
         <AlertDialogContent>

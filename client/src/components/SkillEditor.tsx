@@ -5,9 +5,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { useShortcut } from "@/hooks/useShortcuts";
 import {
   hasErrors,
   validateSkill,
@@ -71,6 +73,9 @@ export function SkillEditor({
     if (hasErrors(issues)) return;
     onSave(draft);
   };
+
+  // Ctrl/⌘+S saves the draft from anywhere in the editor.
+  useShortcut("s", handleSave, { ctrlOrCmd: true, ignoreWhenTyping: false });
 
   const fieldClass = (field: "name" | "description" | "body") =>
     cn(
@@ -187,6 +192,13 @@ export function SkillEditor({
             <Button variant="outline" onClick={onCancel}>
               Cancel
             </Button>
+            <span className="ml-1 hidden items-center gap-1 text-xs text-muted-foreground sm:inline-flex">
+              <KbdGroup>
+                <Kbd>Ctrl</Kbd>
+                <Kbd>S</Kbd>
+              </KbdGroup>
+              to save
+            </span>
           </div>
         </div>
 

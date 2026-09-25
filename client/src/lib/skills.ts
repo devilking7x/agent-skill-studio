@@ -9,6 +9,8 @@
  * import/export works with plain .md files. No server involved.
  */
 
+import { lintSecurity } from "./securityLint";
+
 export interface Skill {
   /** Stable id: `bundled:<name>` for bundled skills, nanoid for user skills. */
   id: string;
@@ -100,6 +102,15 @@ export function validateSkill(draft: SkillDraft, existingNames: string[] = []): 
       field: "body",
       message: "Consider starting the body with a markdown heading for readability.",
     });
+  }
+
+  // Security lint: skills are executable instructions, so flag suspicious
+  // patterns (remote-code execution, embedded secrets, exfiltration).
+  // These are warnings, never errors — they inform, not block.
+  if (body) {
+    for (const message of lintSecurity(body)) {
+      issues.push({ level: "warning", field: "body", message });
+    }
   }
 
   return issues;
