@@ -1,16 +1,35 @@
-# Contributing to Invoice Generator
+# Contributing to Agent Skill Studio
 
-Contributions are welcome across calculations, print layout, accessibility, documentation, and international formatting.
+Thanks for your interest! This studio is beginner-friendly — small improvements are very welcome, especially during Hacktoberfest.
 
-Run before opening a pull request:
+## Ways to contribute
+
+- **New skill templates** for the gallery (e.g. code-reviewer, commit-helper, test-writer)
+- **Export improvements** — new export targets, filename customization
+- **Validation rules** — catch more common `SKILL.md` mistakes
+- **UI polish** — editor experience, mobile layout, keyboard shortcuts
+- **Docs & typos** — clarifications make great first PRs
+
+## Dev setup
 
 ```bash
-pnpm install
-pnpm check
-pnpm build
-pnpm format
+npm install
+npm run dev
 ```
 
-Test zero values, decimals, large quantities, 0–100% discount, tax changes, removing the final item, and browser print preview. Keep financial calculations transparent and avoid adding payment or data-storage integrations without an explicit design and privacy review.
+Verify the production build before submitting:
 
-Do not commit real client information, addresses, tax identifiers, invoices, or secrets. Use synthetic examples.
+```bash
+npm run build
+```
+
+## Pull request process
+
+1. Fork the repo and create a branch: `git checkout -b feat/my-change`
+2. Make your change and verify `npm run build` passes
+3. Open a PR describing **what** changed and **why**
+
+## Ground rules
+
+- **Stay local-first.** No network calls without discussing in an issue first.
+- TypeScript + React, styled with Tailwind. Keep the bundle small.
