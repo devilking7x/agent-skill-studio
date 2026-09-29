@@ -5,7 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF.svg)](https://vite.dev)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg)](https://www.typescriptlang.org)
-[![Local-first](https://img.shields.io/badge/local--first-100%25-brightgreen.svg)](#)
+[![Local-first](https://img.shields.io/badge/local--first-100%25-brightgreen.svg)](#-privacy)
 
 > Every skill your agents use, in one studio.
 
@@ -69,6 +69,10 @@ Conventional Commits format: `type(scope): summary`.
 ![Agent Skill Studio library with bundled skills](screenshots/demo.png)
 
 *Library view with search + tag filters · Skill detail with rendered preview · Editor with live validation*
+
+## 🔒 Privacy
+
+Everything runs 100% in your browser: your skills live in `localStorage`, bundled sample skills stay pristine, and nothing is uploaded or tracked. One click in the app resets everything to defaults.
 
 ## 🗺️ Roadmap
 
